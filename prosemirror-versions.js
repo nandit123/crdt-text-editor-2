@@ -142,6 +142,8 @@ const colors = [
 
 const user = random.oneOf(testUsers)
 
+var urlParams;
+
 window.addEventListener('load', () => {
   const ydoc = new Y.Doc()
   console.log('ydoc is: ', ydoc)
@@ -154,6 +156,16 @@ window.addEventListener('load', () => {
   // indexeddbProvider.whenSynced.then(() => {
   //     console.log('loaded data from indexed db')
   // })
+  console.log('entered load function')
+  var match,
+      pl     = /\+/g,  // Regex for replacing addition symbol with a space
+      search = /([^&=]+)=?([^&]*)/g,
+      decode = function (s) { return decodeURIComponent(s.replace(pl, " ")); },
+      query  = window.location.search.substring(1);
+  console.log('query onload: ', query)
+  urlParams = {};
+  while (match = search.exec(query))
+      urlParams[decode(match[1])] = decode(match[2]);
   console.log('tony:: ', urlParams.docID)
   // const provider = new WebsocketProvider('wss://demos.yjs.dev', 'prosemirror-versions', ydoc)
   const provider = new WebrtcProvider(urlParams.docID, ydoc, {
@@ -205,20 +217,20 @@ window.addEventListener('load', () => {
   window.example = { provider, ydoc, type, prosemirrorView }
 })
 
-var urlParams;
+// var urlParams;
 
-window.onload = function () {
-    console.log('entered load function')
-    var match,
-        pl     = /\+/g,  // Regex for replacing addition symbol with a space
-        search = /([^&=]+)=?([^&]*)/g,
-        decode = function (s) { return decodeURIComponent(s.replace(pl, " ")); },
-        query  = window.location.search.substring(1);
-    console.log('query onload: ', query)
-    urlParams = {};
-    while (match = search.exec(query))
-       urlParams[decode(match[1])] = decode(match[2]);
-    console.log('urlParams: ', urlParams.docID)
-}();
-console.log('yoooo')
-console.log('urlParams=>', urlParams.docID);
+// window.onload = function () {
+//     console.log('entered load function')
+//     var match,
+//         pl     = /\+/g,  // Regex for replacing addition symbol with a space
+//         search = /([^&=]+)=?([^&]*)/g,
+//         decode = function (s) { return decodeURIComponent(s.replace(pl, " ")); },
+//         query  = window.location.search.substring(1);
+//     console.log('query onload: ', query)
+//     urlParams = {};
+//     while (match = search.exec(query))
+//        urlParams[decode(match[1])] = decode(match[2]);
+//     console.log('urlParams: ', urlParams.docID)
+// }();
+// console.log('yoooo')
+// console.log('urlParams=>', urlParams.docID);
