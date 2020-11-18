@@ -166,10 +166,10 @@ window.addEventListener('load', () => {
   urlParams = {};
   while (match = search.exec(query))
       urlParams[decode(match[1])] = decode(match[2]);
-  console.log('tony:: ', urlParams.docID)
+  console.log('tony:: ', urlParams.docID, 'password: ', urlParams.password)
   // const provider = new WebsocketProvider('wss://demos.yjs.dev', 'prosemirror-versions', ydoc)
   const provider = new WebrtcProvider(urlParams.docID, ydoc, {
-    password: "example",
+    password: urlParams.password,
     signaling: [
       "wss://signaling.yjs.dev",
       "wss://y-webrtc-signaling-eu.herokuapp.com",
