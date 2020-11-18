@@ -174,6 +174,7 @@ window.addEventListener('load', () => {
       "wss://signaling.yjs.dev",
       "wss://y-webrtc-signaling-eu.herokuapp.com",
       "wss://y-webrtc-signaling-us.herokuapp.com",
+      'ws://localhost:4444'
     ],
   });
   console.log('webrtc provider: ', provider)
