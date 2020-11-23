@@ -43,6 +43,7 @@ const addVersion = doc => {
       clientID: doc.clientID
     }])
   }
+  console.log('versions array: ', versions)
 }
 
 const liveTracking = /** @type {HTMLInputElement} */ (dom.element('input', [
@@ -216,21 +217,3 @@ window.addEventListener('load', () => {
 
   window.example = { provider, ydoc, type, prosemirrorView }
 })
-
-// var urlParams;
-
-// window.onload = function () {
-//     console.log('entered load function')
-//     var match,
-//         pl     = /\+/g,  // Regex for replacing addition symbol with a space
-//         search = /([^&=]+)=?([^&]*)/g,
-//         decode = function (s) { return decodeURIComponent(s.replace(pl, " ")); },
-//         query  = window.location.search.substring(1);
-//     console.log('query onload: ', query)
-//     urlParams = {};
-//     while (match = search.exec(query))
-//        urlParams[decode(match[1])] = decode(match[2]);
-//     console.log('urlParams: ', urlParams.docID)
-// }();
-// console.log('yoooo')
-// console.log('urlParams=>', urlParams.docID);
